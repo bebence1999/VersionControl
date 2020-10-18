@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using week06.Entities;
 using week06.MnbServiceReference;
 
 namespace week06
@@ -28,10 +29,18 @@ namespace week06
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
+
+            BindingList<RateData> Rates = new BindingList<RateData>();
+            datagv.DataSource = Rates;
         }
 
-       
+        
+        
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 }
