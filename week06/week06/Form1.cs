@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using week06.Entities;
 using week06.MnbServiceReference;
 
@@ -32,6 +33,32 @@ namespace week06
 
             BindingList<RateData> Rates = new BindingList<RateData>();
             datagv.DataSource = Rates;
+
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+
+            // Végigmegünk a dokumentum fő elemének gyermekein
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                // Létrehozzuk az adatsort és rögtön hozzáadjuk a listához
+                // Mivel ez egy referencia típusú változó, megtehetjük, hogy előbb adjuk a listához és csak később töltjük fel a tulajdonságait
+                var rate = new RateData();
+                Rates.Add(rate);
+
+                // Dátum
+                rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                // Valuta
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+
+                // Érték
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+                if (unit != 0)
+                    rate.Value = value / unit;
+            }
+
         }
 
         
@@ -40,6 +67,39 @@ namespace week06
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private xmlhivas()
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+
+            // Végigmegünk a dokumentum fő elemének gyermekein
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                // Létrehozzuk az adatsort és rögtön hozzáadjuk a listához
+                // Mivel ez egy referencia típusú változó, megtehetjük, hogy előbb adjuk a listához és csak később töltjük fel a tulajdonságait
+                var rate = new RateData();
+                Rates.Add(rate);
+
+                // Dátum
+                rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                // Valuta
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+
+                // Érték
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+                if (unit != 0)
+                    rate.Value = value / unit;
+            }
         }
     }
 

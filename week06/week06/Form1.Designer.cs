@@ -49,6 +49,7 @@
             this.Controls.Add(this.datagv);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagv)).EndInit();
             this.ResumeLayout(false);
 

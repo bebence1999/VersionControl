@@ -11,6 +11,6 @@ namespace week06.Entities
         DateTime Date { get; set; }
         string Currency { get; set; }
         decimal Value { get; set; }
-        
+
     }
 }
