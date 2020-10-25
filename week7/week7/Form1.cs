@@ -22,7 +22,8 @@ namespace week7
             BirthProbabilities = GetBirthProbabilities(@"C:\Users\Bence-Mr.Chatbee\Downloads\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Users\Bence-Mr.Chatbee\Downloads\halál.csv");
 
-            
+            Random rng = new Random(1234);
+
         }
 
         List<Person> Population = new List<Person>();
