@@ -21,6 +21,8 @@ namespace week7
             Population = GetPopulation(@"C:\Users\Bence-Mr.Chatbee\Downloads\nép.csv");
             BirthProbabilities = GetBirthProbabilities(@"C:\Users\Bence-Mr.Chatbee\Downloads\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Users\Bence-Mr.Chatbee\Downloads\halál.csv");
+
+            
         }
 
         List<Person> Population = new List<Person>();
@@ -59,8 +61,9 @@ namespace week7
                     var line = sr.ReadLine().Split(';');
                     DeathProbabilities.Add(new DeathProbability()
                     {
-                        BirthYear = int.Parse(line[0]),
-                        Gender = (Gender)Enum.Parse(typeof(Gender), line[1]),
+                        
+                        Gender = (Gender)Enum.Parse(typeof(Gender), line[0]),
+                        Age = int.Parse(line[1]),
                         P = double.Parse(line[2])
                     });
                 }
@@ -80,7 +83,7 @@ namespace week7
                     var line = sr.ReadLine().Split(';');
                     BirthProbabilities.Add(new BirthProbability()
                     {
-                        BirthYear = int.Parse(line[0]),
+                        Age = int.Parse(line[0]),
                         NbrOfChildren = int.Parse(line[1]),
                         P = double.Parse(line[2])
                     });
