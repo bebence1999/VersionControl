@@ -22,10 +22,7 @@ namespace weeek8.Entities
             DrawImage(e.Graphics);
         }
 
-        private void DrawImage(Graphics graphics)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         protected void DrawImage(Graphics g)
         {
